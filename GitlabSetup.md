@@ -1,5 +1,3 @@
-![Build Status](https://gitlab.com/pages/gitbook/badges/master/build.svg)
-
 ---
 
 # My note for gitlab setup 
@@ -9,12 +7,13 @@
 
 1. 安装须知  
   安装Gitlab需要在4Gb内存以上，否则会很卡，甚至出现502错误无法访问
-  下载gitlab下载地址gitlab-download
+  下载gitlab下载地址  
+  [gitlab-download](https://packages.gitlab.com/gitlab/gitlab-ce)
 
 
 2. 修改安装源
-   1)添加公钥  
-     首先信任Gitlab的GPG公钥：  
+   1)添加公钥   
+     首先信任Gitlab的GPG公钥：   
      ( curl https://packages.gitlab.com/gpg.key 2> /dev/null | sudo apt-key add - &>/dev/null ) 
 
     使用清华源  
@@ -23,16 +22,16 @@
 
 
 3. 安装gitlab-ce
-   1) 更新源
+   1) 更新源  
     $ sudo apt-get update  && sudo apt-get upgrade
 
    2) 安装SMTP发送邮件软件（可选）  
-    $ sudo apt-get install -y postfix
+    $ sudo apt-get install -y postfix  
 
-   3) 添加GitLab包仓库
+   3) 添加GitLab包仓库  
     $ curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
 
-   4) 安装GitLab
+   4) 安装GitLab 
     $ sudo apt-get install gitlab-ce
 
    4) 配置 /etc/gitlab/gitlab.rb 文件
