@@ -35,50 +35,57 @@
     $ sudo apt-get install gitlab-ce
 
    4) 配置 /etc/gitlab/gitlab.rb 文件
+```sh
+letsencrypt['enable'] = false   
+external_url 'http://192.168.1.9'
 
-    >  letsencrypt['enable'] = false   
-    
-    > external_url 'http://192.168.1.9'  
-    >  
-    >  gitlab_rails['time_zone'] = 'Beijing'
-    >  
-    >  \#gitlab_rails['gitlab_email_from'] = 'noreply@idreamsky.com'
-    >  
-    >  gitlab_rails['manage_backup_path'] = true  
-    >  gitlab_rails['backup_path'] = "/data/gitlab/backups"  
-    >  
-    >  gitlab_rails['backup_keep_time'] = 172800  
-    >  
-    >   git_data_dirs({  
-    >     "default" =    >  {    
-    >       "path" =    >  "/data/gitlab/git-data",    
-    >       "failure_count_threshold" =    >  10,    
-    >       "failure_wait_time" =    >  30,    
-    >       "failure_reset_time" =    >  1800,    
-    >       "storage_timeout" =    >  30    
-    >      }    
-    >   })    
-    >    
+gitlab_rails['time_zone'] = 'Beijing'
 
-    >  
-    >  unicorn['worker_processes'] = 48
-    >  
-    >  postgresql['shared_buffers'] = "8GB"
-    >  postgresql['max_connections'] = 800
-    >  postgresql['max_worker_processes'] = 24    
-    >  
-    >  nginx['worker_processes'] = 8    
-    >  nginx['worker_connections'] = 10000   
-    >  
-    >  \# 添加ip白名单    
-    >  gitlab_rails['rack_attack_git_basic_auth'] = {    
-    >    'enabled' =    >  true,     
-    >    'ip_whitelist' =    >  ["127.0.0.1","192.168..1.9"],   
-    >    'maxretry' =    >  30,  
-    >    'findtime' =    >  30,  
-    >    'bantime' =    >  600  
-    >  }  
+#gitlab_rails['gitlab_email_from'] = 'noreply@idreamsky.com'
 
+gitlab_rails['manage_backup_path'] = true
+gitlab_rails['backup_path'] = "/data/gitlab/backups"
+
+gitlab_rails['backup_keep_time'] = 172800
+
+ git_data_dirs({
+   "default" ={
+     "path" ="/data/gitlab/git-data",
+     "failure_count_threshold" =10,
+     "failure_wait_time" =30,
+     "failure_reset_time" =1800,
+     "storage_timeout" =30
+    }
+ })
+
+# gitlab_rails['smtp_enable'] = true
+# gitlab_rails['smtp_address'] = "mail.qq.com"
+# gitlab_rails['smtp_port'] = 25
+# gitlab_rails['smtp_user_name'] = "***@qq.com"
+#  gitlab_rails['smtp_password'] = "******"
+#  gitlab_rails['smtp_domain'] = "qq.com"
+#  gitlab_rails['smtp_authentication'] = "login"
+#  gitlab_rails['smtp_enable_starttls_auto'] = true
+#  gitlab_rails['smtp_tls'] = false
+
+unicorn['worker_processes'] = 48
+
+postgresql['shared_buffers'] = "8GB"
+postgresql['max_connections'] = 800
+postgresql['max_worker_processes'] = 24
+
+nginx['worker_processes'] = 8
+nginx['worker_connections'] = 10000
+
+# 添加ip白名单
+gitlab_rails['rack_attack_git_basic_auth'] = {
+  'enabled' =true,
+  'ip_whitelist' =["127.0.0.1","192.168..1.9"],
+  'maxretry' =30,
+  'findtime' =30,
+  'bantime' =600
+}
+```
 
 
 
